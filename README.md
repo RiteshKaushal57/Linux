@@ -216,3 +216,67 @@ A pipe sends the **output of one command as input to another command**.
 **Example:** `ps aux | grep ssh`
 
 Shows processes related to **ssh**.
+
+## Repeating commands from History
+- Using arroy key.
+- `Ctrl + r`: used when you remember part of the command but not the full command.  
+- `!number`: repeats commands from history based on its number.    
+- `!a`: repeats last command that start with `a`.
+
+## Keyboard shortcuts
+- `Ctrl a`: moves cursor to the start of the current line.   
+- `Ctrl e`: moves cursor to the end of the current line.   
+- `Ctrl l`: clear the screen.     
+- `Ctrl d`: deletes next word.   
+- `Ctrl u`: removes the current line.   
+- `Alt b`: moves cursor one word backword.   
+- `Alt f`: moves cursor one word forward.   
+
+## Shell expansion
+- `ls`: Lists files and directories in the current directory.   
+- `ls -l`: Displays files in long listing format.    
+- `ls *`: Displays contents of directories as well.    
+- `ls -d *`: The -d option tells ls to show directory names instead of their contents.   
+- `ls -d /etc/*`: Lists all files and directories inside /etc.   
+- `ls -d /etc/a*`: Lists files in /etc that start with letter a.   
+- `ls -d /etc/a????*`: This command lists files starting with a + at least four characters.   
+- `ls -d /etc/[a-d]*`: Lists file that start with any letter from a to d.   
+- `which passwd`: Shows the location of a command executable.   
+
+## Alias
+An alias is a shortcut for a command in Linux. It allows you to create a short or custom command that executes a longer command.
+
+### Temporary vs Permanent Alias
+**Temporary Alias**
+
+If you create an alias in the terminal:
+
+`alias ll='ls -l'`
+
+It works only in the current session.Once you close the terminal, it disappears.
+
+**Permanent Alias**
+
+To make aliases permanent, add them to: `~/.bashrc`
+
+**Example:**
+
+`vim ~/.bashrc`
+
+Add:
+
+alias ll='ls -l'  
+alias update='sudo dnf update'
+
+Then reload:
+
+`source ~/.bashrc`
+
+Now the alias works every time you open the terminal.
+
+### Removing an Alias
+
+To remove an alias:
+
+`unalias name`
+
