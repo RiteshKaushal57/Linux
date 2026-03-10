@@ -152,9 +152,7 @@ Redirection helps send output to files, suppress errors, or provide input from f
 
 Takes input from a file instead of keyboard input.
 
-**Example:**
-
-`sort < names.txt`
+**Example:** `sort < names.txt`
 
 sort reads input from names.txt.
 
@@ -162,9 +160,7 @@ sort reads input from names.txt.
 
 Redirects command output to a file. If the file exists, it **overwrites** it.
 
-**Example:**
-
-`ls > files.txt`
+**Example:** `ls > files.txt`
 
 The output of `ls` is saved in **files.txt**.
 
@@ -172,9 +168,7 @@ The output of `ls` is saved in **files.txt**.
 
 Appends command output to the end of a file.
 
-**Example:**
-
-`date >> log.txt`
+**Example:** `date >> log.txt`
 
 The date is added to **log.txt** without deleting existing content.
 
@@ -182,9 +176,7 @@ The date is added to **log.txt** without deleting existing content.
 
 Redirects error messages to `/dev/null`, which discards them.
 
-**Example:**
-
-`find / -name test`
+**Example:** `find / -name test`
 
 **What this does:**
 
@@ -194,12 +186,12 @@ Searches the entire filesystem (/) for files named test. But many directories ar
 
 These messages come from STDERR (error output).
 
-Using 2>/dev/null:
-`find` / -name test 2>/dev/null`
+Using 2>/dev/null:   
+`find / -name test 2>/dev/null`
 
 **Meaning:**
 
--  → STDERR
+- → STDERR
 - >  → redirect
 - dev/null → discard output
 
@@ -221,8 +213,6 @@ Result:
 
 A pipe sends the **output of one command as input to another command**.
 
-**Example:**
-
-`ps aux | grep ssh`
+**Example:** `ps aux | grep ssh`
 
 Shows processes related to **ssh**.
