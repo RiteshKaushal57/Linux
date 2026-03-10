@@ -72,7 +72,7 @@ Vim works in different modes:
 
 ---
 
-## Basic Mode Commands
+### Basic Mode Commands
 
 | Command | Function                                    |
 | ------- | ------------------------------------------- |
@@ -83,7 +83,7 @@ Vim works in different modes:
 
 ---
 
-## File Saving & Exit
+### File Saving & Exit
 
 | Command | Function            |
 | ------- | ------------------- |
@@ -93,7 +93,7 @@ Vim works in different modes:
 
 ---
 
-## Editing Commands
+### Editing Commands
 
 | Command    | Function                   |
 | ---------- | -------------------------- |
@@ -105,7 +105,7 @@ Vim works in different modes:
 
 ---
 
-## Navigation Commands
+### Navigation Commands
 
 | Command | Function              |
 | ------- | --------------------- |
@@ -117,7 +117,7 @@ Vim works in different modes:
 
 ---
 
-## Searching in Vim
+### Searching in Vim
 
 | Command | Function                   |
 | ------- | -------------------------- |
@@ -126,10 +126,10 @@ Vim works in different modes:
 
 ---
 
-## Replace Text
+### Replace Text
 
 Replace all occurrences of a word in the file:
 
-```vim
+```
 :%s/old/new/g
 ```
