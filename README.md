@@ -182,7 +182,7 @@ Redirects error messages to `/dev/null`, which discards them.
 
 Searches the entire filesystem (/) for files named test. But many directories are restricted. So you may see many errors like:  
 
-*find: ‘/root’: Permission denied or find: ‘/proc/1234’: Permission *denied*
+*find: ‘/root’: Permission denied or find: ‘/proc/1234’: Permission denied*
 
 These messages come from STDERR (error output).
 
@@ -191,8 +191,8 @@ Using 2>/dev/null:
 
 **Meaning:**
 
-- → STDERR
-- >  → redirect
+- 2 → STDERR
+- > → redirect
 - dev/null → discard output
 
 
@@ -200,7 +200,7 @@ So the command becomes:
 
 Send all error messages to /dev/null, which discards them.
 
-Result:
+**Result:**
 
 - Only valid results appear  
 - Permission errors disappear
