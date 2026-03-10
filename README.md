@@ -133,3 +133,112 @@ Replace all occurrences of a word in the file:
 ```
 :%s/old/new/g
 ```
+
+## 🔄 Understanding Redirection
+
+Redirection allows you to **control where command input and output go** by using Linux standard streams.
+
+Linux commands use three standard streams:
+
+| Stream         | Name            | Description           |
+| -------------- | --------------- | --------------------- |
+| **STDIN (0)**  | Standard Input  | Input to a command    |
+| **STDOUT (1)** | Standard Output | Normal command output |
+| **STDERR (2)** | Standard Error  | Error messages        |
+
+Redirection helps send output to files, suppress errors, or provide input from files.
+
+### 1. < (Input Redirection)
+
+Takes input from a file instead of keyboard input.
+
+command < file
+
+Example:
+
+sort < names.txt
+
+sort reads input from names.txt.
+
+### 2. > (Overwrite Output)
+
+Redirects command output to a file.
+
+If the file exists, it **overwrites** it.
+
+Example:
+
+```bash
+ls > files.txt
+```
+
+The output of `ls` is saved in **files.txt**.
+
+
+### 3. >> (Append Output)
+
+Appends command output to the end of a file.
+
+Example:
+
+```bash
+date >> log.txt
+```
+
+The date is added to **log.txt** without deleting existing content.
+
+### 4. 2>/dev/null (Discard Errors)
+
+Redirects error messages to `/dev/null`, which discards them.
+
+**Example:**
+```
+find / -name test
+```
+**What this does:**
+
+Searches the entire filesystem (/) for files named test.
+
+But many directories are restricted.
+
+So you may see many errors like:
+
+find: ‘/root’: Permission denied or find: ‘/proc/1234’: Permission denied
+
+These messages come from STDERR (error output).
+
+Using 2>/dev/null:
+```
+find / -name test 2>/dev/null
+```
+**Meaning:**
+`
+2  → STDERR
+>  → redirect
+/dev/null → discard output
+`
+
+So the command becomes:
+
+Send all error messages to /dev/null, which discards them.
+
+Result:
+
+- Only valid results appear  
+- Permission errors disappear
+
+`/dev/null` is often called the **black hole of Linux**.
+
+## 🔗 Understanding Pipes
+
+### `|` (Pipe)
+
+A pipe sends the **output of one command as input to another command**.
+
+Example:
+
+```bash
+ps aux | grep ssh
+```
+
+Shows processes related to **ssh**.
