@@ -152,38 +152,29 @@ Redirection helps send output to files, suppress errors, or provide input from f
 
 Takes input from a file instead of keyboard input.
 
-command < file
+**Example:**
 
-Example:
-
-sort < names.txt
+`sort < names.txt`
 
 sort reads input from names.txt.
 
 ### 2. > (Overwrite Output)
 
-Redirects command output to a file.
+Redirects command output to a file. If the file exists, it **overwrites** it.
 
-If the file exists, it **overwrites** it.
+**Example:**
 
-Example:
-
-```bash
-ls > files.txt
-```
+`ls > files.txt`
 
 The output of `ls` is saved in **files.txt**.
-
 
 ### 3. >> (Append Output)
 
 Appends command output to the end of a file.
 
-Example:
+**Example:**
 
-```bash
-date >> log.txt
-```
+`date >> log.txt`
 
 The date is added to **log.txt** without deleting existing content.
 
@@ -192,31 +183,26 @@ The date is added to **log.txt** without deleting existing content.
 Redirects error messages to `/dev/null`, which discards them.
 
 **Example:**
-```
-find / -name test
-```
+
+`find / -name test`
+
 **What this does:**
 
-Searches the entire filesystem (/) for files named test.
+Searches the entire filesystem (/) for files named test. But many directories are restricted. So you may see many errors like:  
 
-But many directories are restricted.
-
-So you may see many errors like:
-
-find: ‘/root’: Permission denied or find: ‘/proc/1234’: Permission denied
+*find: ‘/root’: Permission denied or find: ‘/proc/1234’: Permission *denied*
 
 These messages come from STDERR (error output).
 
 Using 2>/dev/null:
-```
-find / -name test 2>/dev/null
-```
+`find` / -name test 2>/dev/null`
+
 **Meaning:**
-`
-2  → STDERR
->  → redirect
-/dev/null → discard output
-`
+
+-  → STDERR
+- >  → redirect
+- dev/null → discard output
+
 
 So the command becomes:
 
@@ -235,10 +221,8 @@ Result:
 
 A pipe sends the **output of one command as input to another command**.
 
-Example:
+**Example:**
 
-```bash
-ps aux | grep ssh
-```
+`ps aux | grep ssh`
 
 Shows processes related to **ssh**.
