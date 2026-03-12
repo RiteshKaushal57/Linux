@@ -285,3 +285,67 @@ To remove an alias:
 ```
 unalias name
 ```            
+
+## The Filesystem Hierarchy Standard
+
+To get detail info on Filesystem go to:
+```
+man file-hierarchy
+```
+
+**To go to root directory:**
+```
+cd /
+```
+
+- `/etc:` Configuration files.   
+- `/usr:` Program files in windows.    
+- `/var:` Used for temprory files.   
+- `/tmp:` Temprory directory where any user can write.
+
+**To go to user home directory:**
+```
+cd
+```
+
+### Essential File Management Commands
+- `ls:` List files
+
+- `ls -l:` List files with more info.
+
+- `cd:` Changes the working directory.
+
+- `pwd:` Prints the current working directory.
+
+- `mkdir:` Creates a new directory.
+
+- `rmdir: `Removes an empty directory.
+
+- `rm:` Deletes a file.
+
+- `rm -r folder:` Deletes a folder and its contents.
+
+- `cp file1.txt file2.txt:` Copies a file.
+
+- `cp -r dir1 dir2:` Copies a directory recursively.
+
+- `cat file.txt:` Displays file content.
+
+- `less file.txt:` Opens a file for viewing with scrolling support.
+
+- `more file.txt:` Similar to less, but only moves forward.
+
+- `head -n 10 file.txt:` Displays the first 10 lines of a file.
+
+- `tail -n 10 file.txt:` Displays the last 10 lines of a file.
+
+mv old_name new_nam: mv old_name new_nam
+
+- `:w!:` Save file
+
+- `:wq!:` Save and exit
+
+- `:q!:` Quit without saving
+
+- `find / -name "hosts"`
+- `find / -type f -size +100M`
