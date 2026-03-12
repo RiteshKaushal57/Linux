@@ -2,7 +2,7 @@
 
 ## 👥 User Monitoring Commands
 
-- **who**
+### who
 
 Shows **users currently logged into the system**.  
 Displays:  
@@ -11,7 +11,7 @@ Displays:
 * Login time  
 * Remote IP (if applicable)
 
-- **w**
+### w
 
 Shows **logged-in users and what they are currently doing**.
 
@@ -22,11 +22,11 @@ Displays:
 
 ## 🖥️ Virtual Terminal Command
 
-- **chvt**
+### chvt
 
 Used to **switch between virtual terminals (TTYs)**.
 
-Example:
+**Example:**
 
 ```
 sudo chvt 2
@@ -36,7 +36,7 @@ Switches to **virtual terminal 2 (`tty2`)**.
 
 ## 📖 Manual Pages (Documentation)
 
-- **man**
+### man
 
 Used to **view detailed documentation of Linux commands**.
 
@@ -52,8 +52,7 @@ Used to **view detailed documentation of Linux commands**.
 ```
 man -k keyword
 ```
-Example:
-
+**Example:**
 ```
 man -k password
 ```
@@ -154,7 +153,7 @@ Takes input from a file instead of keyboard input.
 
 **Example:** `sort < names.txt`
 
-sort reads input from names.txt.
+Sort reads input from names.txt.
 
 ### 2. > (Overwrite Output)
 
@@ -176,7 +175,10 @@ The date is added to **log.txt** without deleting existing content.
 
 Redirects error messages to `/dev/null`, which discards them.
 
-**Example:** `find / -name test`
+**Example:**
+```
+find / -name test
+```
 
 **What this does:**
 
@@ -187,8 +189,9 @@ Searches the entire filesystem (/) for files named test. But many directories ar
 These messages come from STDERR (error output).
 
 Using 2>/dev/null:   
-`find / -name test 2>/dev/null`
-
+```
+fin1d / -name test 2>/dev/null`
+```
 **Meaning:**
 
 - 2 → STDERR
@@ -213,8 +216,10 @@ Send all error messages to /dev/null, which discards them.
 
 A pipe sends the **output of one command as input to another command**.
 
-**Example:** `ps aux | grep ssh`
-
+**Example:** 
+```
+ps aux | grep ssh
+```
 Shows processes related to **ssh**.
 
 ## Repeating commands from History
@@ -250,9 +255,9 @@ An alias is a shortcut for a command in Linux. It allows you to create a short o
 **Temporary Alias**
 
 If you create an alias in the terminal:
-
-`alias ll='ls -l'`
-
+```
+alias ll='ls -l'
+```
 It works only in the current session.Once you close the terminal, it disappears.
 
 **Permanent Alias**
@@ -260,23 +265,23 @@ It works only in the current session.Once you close the terminal, it disappears.
 To make aliases permanent, add them to: `~/.bashrc`
 
 **Example:**
-
-`vim ~/.bashrc`
-
-Add:
+```
+vim ~/.bashrc
+```
+**Add:**
 
 alias ll='ls -l'  
 alias update='sudo dnf update'
 
-Then reload:
-
-`source ~/.bashrc`
-
+**Then reload:**  
+```
+source ~/.bashrc
+```
 Now the alias works every time you open the terminal.
 
 ### Removing an Alias
 
 To remove an alias:
-
-`unalias name`
-
+```
+unalias name
+```            
