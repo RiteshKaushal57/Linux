@@ -339,7 +339,7 @@ cd
 
 - `tail -n 10 file.txt:` Displays the last 10 lines of a file.
 
-mv old_name new_nam: mv old_name new_nam
+- `mv old_name new_nam: mv old_name new_nam`
 
 - `:w!:` Save file
 
@@ -348,4 +348,71 @@ mv old_name new_nam: mv old_name new_nam
 - `:q!:` Quit without saving
 
 - `find / -name "hosts"`
+
 - `find / -type f -size +100M`
+
+### Understanding Links
+
+Links are pointers to files in a different location. Links are useful to make the same file available on multiple locations.
+
+1. A Hard Link is another filename that points to the same inode (same data on disk) as the original file.
+```
+ln source_file hardlink_name
+```
+
+**Example:**
+```
+ln inventory.ini file
+```
+Now both filenames refer to same physical data and have same inode.
+
+**Check inode with:**
+```
+ls -il
+```
+
+- Hard Link cannot link directories.
+- Hard Link cannot link file on different Filesystems.
+- Hard Link cannot merge existing files. i.e target file shouldn't exist before linking.
+
+
+
+2. A Soft Link (Symbolic Link) is a special file that points to another file or directory path. It acts like a shortcut to the original file or directory.
+```
+ln -s Source Target
+```
+**Example:**
+```
+ln -s Documents Docs
+```
+*This creates:* `Docs -> Documents`
+
+Now accessing Docs will actually access the Documents directory.
+
+**Identify a soft link using:**
+```
+ls -l
+```
+- If you want a directory to contain its own files plus another directory, create the link inside it.
+
+**Example:**
+```
+ln -s ../Documents Docs/Documents
+```
+Now Docs will have its own file and files of Documents folder in Documents folder also.
+
+i.e /home/ritesh
+     ├── Documents/
+     │     └── link.txt
+     └── Docs/
+           ├── File1
+           └── Documents -> ../Documents
+
+#### Difference 
+- Modifying file content reflects through both hard and soft links.
+
+- Hard links share the same inode.
+
+- Soft links simply redirect to the original file path.
+
+- If the original file is deleted, soft links break but hard links survive.
