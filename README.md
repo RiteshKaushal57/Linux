@@ -416,3 +416,213 @@ i.e /home/ritesh
 - Soft links simply redirect to the original file path.
 
 - If the original file is deleted, soft links break but hard links survive.
+
+
+## Understanding Root User
+In Linux, the **root user** is the superuser who has full control over the system.   
+Instead of logging in directly as root, administrators usually use **`sudo`** to perform administrative tasks securely.
+
+Using `sudo` allows normal users to temporarily execute commands with **root privileges**.
+
+### How `sudo` Works
+
+The behavior of `sudo` is controlled by the configuration file:
+
+```
+/etc/sudoers
+```
+
+This file defines:
+
+* which users can run privileged commands    
+* which commands they can run   
+* whether a password is required    
+
+Because a syntax error in this file can break sudo access, it should **never be edited directly**.
+
+### Using `/etc/sudoers.d` (Best Practice)
+
+Instead of editing `/etc/sudoers`, it is recommended to create **drop-in configuration files** inside:
+
+```
+/etc/sudoers.d/*username
+```
+
+**Example:**
+
+```
+sudo visudo -f /etc/sudoers.d/devops
+```
+
+**Reasons:**
+
+* safer configuration management   
+* prevents overwriting during package updates   
+* easier organization of permissions
+
+# Providing Administrator Access
+
+In most Linux systems, administrative access is granted using the **`wheel` group**.
+
+### Rule inside `/etc/sudoers`
+
+```
+%wheel ALL=(ALL) ALL
+```
+
+Means members of group "wheel" can run any command as any user.
+
+### Add User to Wheel Group
+
+**Example:**
+
+```
+usermod -aG wheel ritesh
+```
+
+Now the user can run commands with `sudo`.
+
+### Passwordless sudo (Not Recommended)
+
+You may see this configuration:
+
+```
+%wheel ALL=(ALL) NOPASSWORD: ALL
+```
+
+This allows users to run `sudo` commands **without entering a password**.
+
+⚠️ This is **dangerous in production environments** because it removes an important security control.
+
+### Adjusting sudo Authentication Timeout
+
+By default, sudo remembers authentication for **5 minutes**.
+
+You can change it using:
+
+```
+Defaults timestamp_type=global,timestamp_timeout=60
+```
+
+Means sudo authentication remains valid for 60 minutes
+
+
+This can be added in `/etc/sudoers` or a file in `/etc/sudoers.d`.
+
+### Granting Access to Specific Commands
+
+Instead of giving full root access, you can allow users to run **specific commands only**.
+
+**Example:**
+
+```
+lisa ALL=/usr/sbin/useradd, /usr/bin/passwd
+```
+
+Means User `lisa` can run sudo useradd, sudo passwd but nothing else.
+
+### Restricting Commands
+
+You can explicitly deny commands.
+
+**Example**:
+
+```
+linda ALL=/usr/bin/passwd, !/usr/bin/passwd root
+```
+
+Means linda can run `sudo passwd` but **cannot change the root password**.
+
+### Allowing Commands for Groups
+
+**Example:**
+
+```
+%users ALL=/bin/mount /dev/sdb, /bin/umount /dev/sdb
+```
+
+Means members of group **users** can mount and unmount `/dev/sdb`.
+
+### 📘 Using SSH to Log in Remotely
+
+**SSH (Secure Shell)** is a protocol used to securely connect to a remote Linux server over a network.
+
+It allows administrators to **manage servers remotely using the command line**.
+
+
+#### 1. SSH Server on RHEL
+
+Most RHEL systems run the SSH service by default.
+
+The service name is `sshd`.
+
+To check its status:
+
+```
+systemctl status sshd
+```
+
+**Example output:**
+
+```
+● sshd.service - OpenSSH server daemon
+   Active: active (running)
+```
+
+*If it is not running, start it with:*
+
+```
+sudo systemctl start sshd
+```
+
+
+#### 2. Root Login
+
+For security reasons, **direct root login via SSH is often disabled**.
+
+This is controlled in the SSH configuration file:
+
+```
+/etc/ssh/sshd_config
+```
+
+Example setting: `PermitRootLogin no`
+
+
+This forces administrators to log in as a normal user and then use **sudo**.
+
+
+#### 3. Connecting to a Remote Server
+
+First find the IP address of the remote machine. Run on the remote server:
+
+```
+ip a
+```
+
+*Example IP:*
+
+```
+192.168.29.100
+```
+
+#### 3 Connect Using SSH
+
+Connect with Current Username
+
+```
+ssh 192.168.29.100
+```
+
+If you wants to Connect as a Specific User:
+
+```
+ssh user@192.168.29.100
+```
+**Example:**
+
+```
+ssh ritesh@192.168.29.100
+```
+This logs in as user **ritesh** on the remote server.
+
