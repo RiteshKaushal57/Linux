@@ -626,3 +626,65 @@ ssh ritesh@192.168.29.100
 ```
 This logs in as user **ritesh** on the remote server.
 
+## Managing Users and Groups
+
+- A **user** is a security principle, user accounts are used to provide people or processes access to system resources.    
+- **Processes** are using system accounts.    
+- **People** are using regular user accounts.
+
+### User Properties 
+User properties are managed in **/etc/passwd**.    
+- **Name:** The name of the account.    
+- **Password:** The secret that is used for authentication, may be disabled.   
+- **UID:** A unique identifier for a user.    
+- **GID:** The ID of the primary group. When you create a user, it is member of primary group.     
+- **GECOS:** Additional non-mendatory information about the user.    
+- **Home Directory:** The environment where users create personal files.    
+- **Shell:** The program that will be started after successful authentication.
+
+### Creating and Managing Users
+- **useradd:** Create user accounts.    
+- **passwd:** Set passwords.    
+- **usermod:** Modify user accounts.    
+- **userdel:** Delete the user accounts. User `userdel -rf *username` to delete all the information about the user.
+- **usermod -aG devops ritesh:** Adds ritesh to group devops. If you don't write -a. then the ritesh will be removed from all the groups except devops.
+
+### Setting Password Properties
+- Encrypted passwords are stored in `/etc/shadow`.    
+- **chage** or **passwd** as root to change password settings.
+
+### Managing user default settings
+- Use **useradd -D** to specify default settings.     
+- Settings in /etc/default/useradd apply to **useradd** only.   
+- Alternatively, write default settings in **/etc/login.defs**.    
+- Files in **/etc/skel** are created to the user home directory upon creation.
+
+### Limiting user access
+1. User accounts can be temporarily locked:    
+- **usermod -L ritesh:** Lock the user.     
+- **usermod -U ritesh:** Unlock the user.    
+
+2. User accounts can be set expire also:     
+- **usermod -e 2032-01-01 ritesh** expires the user account ritesh on 01-01-2032.   
+
+3. Set **/sbin/nologin** as the shell for users that are not intended to log in at all.    
+- **usermod -s /sbin/nologin ritesh**
+
+4. **usermod -s /bin/bash ritesh** to allow the login again.
+
+### Managing group membership
+- Each user must be a member of atleast one group.   
+- Primary Group Membership is managed through /etc/passwd.   
+- The user primary group becomes group-owner if a user creates a file.   
+- Additional (secondary) groups can be defines as well.     
+- Secondary group membership can be managed through /etc/groups.   
+- Temporarily set primary group membership using **newgrp**.   
+- Use **id** to see which groups a user is a member of.  
+
+### Creating and managing groups
+- **groupadd** to add groups.  
+- **groupdel** & **groupmod** to delete and modify the groups.   
+- **lid -g groupname** to list all users that are members of a specific group.     
+- **cat /etc/group** to list all groups.
+- **usermod -aG devops ritesh:** Adds ritesh to group devops. If you don't write -a, then the ritesh will be removed from all the groups except devops. But it wont be removed from primary group. If you want to change the primary group, use `-g` instead of `-G`.
+
