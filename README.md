@@ -460,7 +460,7 @@ sudo visudo -f /etc/sudoers.d/devops
 * prevents overwriting during package updates   
 * easier organization of permissions
 
-# Providing Administrator Access
+## Providing Administrator Access
 
 In most Linux systems, administrative access is granted using the **`wheel` group**.
 
@@ -688,3 +688,8 @@ User properties are managed in **/etc/passwd**.
 - **cat /etc/group** to list all groups.
 - **usermod -aG devops ritesh:** Adds ritesh to group devops. If you don't write -a, then the ritesh will be removed from all the groups except devops. But it wont be removed from primary group. If you want to change the primary group, use `-g` instead of `-G`.
 
+## Securing Files with Permissions
+- **ls -l** to check permissions.     
+- **chown user:group *filename** to set user:group as a owner.     
+- **chgrp group file** to set as a group owner.    
+- **chmod** to set permissions.    
